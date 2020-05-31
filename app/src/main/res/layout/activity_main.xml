@@ -9,12 +9,17 @@
     tools:context=".MainActivity">
 
     <Spinner
-        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/colorSpinner"/>
+
+    <Spinner
+        android:id="@+id/languageSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/okBtnLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OK"/>
