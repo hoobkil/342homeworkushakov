@@ -5,11 +5,6 @@
         <item>Русский</item>
         <item>English</item>
     </string-array>
-    <string-array name="color">
-        <item>Черный</item>
-        <item>Зеленый</item>
-        <item>Синий</item>
-    </string-array>
     <string-array name="size">
         <item>Мелкие</item>
         <item>Средние</item>

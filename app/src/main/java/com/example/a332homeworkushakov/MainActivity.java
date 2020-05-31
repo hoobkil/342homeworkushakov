@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private TextView textView;
     private Spinner languageSpinner;
-    private Spinner colorSpinner;
     private Spinner sizeSpinner;
+    private Locale locale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,33 +39,8 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(languageSpinner.getSelectedItem().toString().contains("Русский")){
-                    Locale locale = new Locale("ru");
-                    Configuration config = new Configuration();
-                    config.setLocale(locale);
-                    getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                    if(sizeSpinner.getSelectedItem().toString().contains("Мелкие")){
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_SMALL);
-                    } else if (sizeSpinner.getSelectedItem().toString().contains("Средние")){
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_MEDIUM);
-                    } else if (sizeSpinner.getSelectedItem().toString().contains("Большие")){
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_LARGE);
-                    }
-                    recreate();
-                } else if (languageSpinner.getSelectedItem().toString().contains("English")){
-                    Locale locale = new Locale("en");
-                    Configuration config = new Configuration();
-                    config.setLocale(locale);
-                    getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                    if(sizeSpinner.getSelectedItem().toString().contains("Мелкие")){
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_SMALL);
-                    } else if (sizeSpinner.getSelectedItem().toString().contains("Средние")){
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_MEDIUM);
-                    } else if (sizeSpinner.getSelectedItem().toString().contains("Большие")){
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_LARGE);
-                    }
-                    recreate();
-                }
+                changeLanguage();
+                changeSize();
             }
         });
 
@@ -73,13 +48,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initSpinner(){
-        ArrayAdapter<?> languageAdapter = ArrayAdapter.createFromResource(this, R.array.language, android.R.layout.simple_spinner_item);
+        ArrayAdapter<?> languageAdapter = ArrayAdapter.createFromResource(this,
+                R.array.language, android.R.layout.simple_spinner_item);
         languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         languageSpinner.setAdapter(languageAdapter);
 
-        ArrayAdapter<?> sizeAdapter = ArrayAdapter.createFromResource(this, R.array.size, android.R.layout.simple_spinner_item);
+        ArrayAdapter<?> sizeAdapter = ArrayAdapter.createFromResource(this,
+                R.array.size, android.R.layout.simple_spinner_item);
         sizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sizeSpinner.setAdapter(sizeAdapter);
+    }
+
+    private void changeLanguage(){
+        if(languageSpinner.getSelectedItem().toString().contains("Русский")){
+            locale = new Locale("ru");
+        } else {
+            locale = new Locale("en");
+        }
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        getResources().updateConfiguration(config, getBaseContext().getResources()
+                .getDisplayMetrics());
+        recreate();
+
+    }
+
+    private void changeSize(){
+        if(sizeSpinner.getSelectedItem().toString().contains("Мелкие")){
+            Utils.changeToTheme(MainActivity.this, Utils.THEME_SMALL);
+        } else if (sizeSpinner.getSelectedItem().toString().contains("Средние")){
+            Utils.changeToTheme(MainActivity.this, Utils.THEME_MEDIUM);
+        } else if (sizeSpinner.getSelectedItem().toString().contains("Большие")){
+            Utils.changeToTheme(MainActivity.this, Utils.THEME_LARGE);
+        }
     }
 
 
