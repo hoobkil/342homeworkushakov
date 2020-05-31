@@ -10,4 +10,9 @@
         <item>Зеленый</item>
         <item>Синий</item>
     </string-array>
+    <string-array name="size">
+        <item>Мелкие</item>
+        <item>Средние</item>
+        <item>Большие</item>
+    </string-array>
 </resources>

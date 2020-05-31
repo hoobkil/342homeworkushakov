@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private Spinner languageSpinner;
     private Spinner colorSpinner;
+    private Spinner sizeSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void init(){
         languageSpinner = findViewById(R.id.languageSpinner);
-        colorSpinner = findViewById(R.id.colorSpinner);
+        sizeSpinner = findViewById(R.id.sizeSpinner);
         button  = findViewById(R.id.okBtnLanguage);
         textView = findViewById(R.id.textView);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
                     Configuration config = new Configuration();
                     config.setLocale(locale);
                     getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                    if(colorSpinner.getSelectedItem().toString().contains("Черный")){
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_DEFAULT);
-                    } else if (colorSpinner.getSelectedItem().toString().contains("Синий")){
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_BLUE);
-                    } else if (colorSpinner.getSelectedItem().toString().contains("Зеленый")) {
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_GREEN);
+                    if(sizeSpinner.getSelectedItem().toString().contains("Мелкие")){
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_SMALL);
+                    } else if (sizeSpinner.getSelectedItem().toString().contains("Средние")){
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_MEDIUM);
+                    } else if (sizeSpinner.getSelectedItem().toString().contains("Большие")){
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_LARGE);
                     }
                     recreate();
                 } else if (languageSpinner.getSelectedItem().toString().contains("English")){
@@ -57,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
                     Configuration config = new Configuration();
                     config.setLocale(locale);
                     getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                    if(colorSpinner.getSelectedItem().toString().contains("Черный")){
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_DEFAULT);
-                    } else if (colorSpinner.getSelectedItem().toString().contains("Синий")){
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_BLUE);
-                    } else if (colorSpinner.getSelectedItem().toString().contains("Зеленый")) {
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_GREEN);
+                    if(sizeSpinner.getSelectedItem().toString().contains("Мелкие")){
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_SMALL);
+                    } else if (sizeSpinner.getSelectedItem().toString().contains("Средние")){
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_MEDIUM);
+                    } else if (sizeSpinner.getSelectedItem().toString().contains("Большие")){
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_LARGE);
                     }
                     recreate();
                 }
@@ -77,11 +77,9 @@ public class MainActivity extends AppCompatActivity {
         languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         languageSpinner.setAdapter(languageAdapter);
 
-        ArrayAdapter<?> colorAdapter = ArrayAdapter.createFromResource(this, R.array.color, android.R.layout.simple_spinner_item);
-        colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        colorSpinner.setAdapter(colorAdapter);
-
-
+        ArrayAdapter<?> sizeAdapter = ArrayAdapter.createFromResource(this, R.array.size, android.R.layout.simple_spinner_item);
+        sizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sizeSpinner.setAdapter(sizeAdapter);
     }
 
 
